@@ -1,0 +1,60 @@
+## Build results
+bin/
+obj/
+out/
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Mono Auto Generated Files
+mono_crash.*
+
+## Visual Studio Code
+.vscode/
+
+## Visual Studio
+.vs/
+*.dbmdl
+*.psess
+*.vsp
+*.vspscc
+*.vssscc
+*.cache
+*.log
+
+## NuGet Packages
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+
+## Entity Framework
+Migrations/
+
+## Dotnet CLI
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## ASP.NET
+appsettings.*.json
+appsettings.Development.json
+
+## Rider
+.idea/
+
+## Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+## Others
+*.DS_Store
+*.env
+*.bak
+*.tmp
+*.swp

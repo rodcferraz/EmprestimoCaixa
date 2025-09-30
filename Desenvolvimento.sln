@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmprestimoCaixa", "Emprestimo\EmprestimoCaixa.csproj", "{CE431AB4-DDEC-61A8-25E0-9475F86111D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE431AB4-DDEC-61A8-25E0-9475F86111D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE431AB4-DDEC-61A8-25E0-9475F86111D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE431AB4-DDEC-61A8-25E0-9475F86111D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE431AB4-DDEC-61A8-25E0-9475F86111D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {94D37654-B40C-44DF-803F-9887050991E8}
+	EndGlobalSection
+EndGlobal
