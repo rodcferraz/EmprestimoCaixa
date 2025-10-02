@@ -1,7 +1,13 @@
+using EmprestimoCaixa.Domain;
+using EmprestimoCaixa.Filters;
 using EmprestimoCaixa.Infraestrutura;
+using EmprestimoCaixa.Infraestrutura.Data;
 using EmprestimoCaixa.Infraestrutura.Interfaces;
 using EmprestimoCaixa.Services;
 using EmprestimoCaixa.Services.Interfaces;
+using EmprestimoCaixa.Services.Interfaces.Juros;
+using EmprestimoCaixa.Services.Juros;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +17,16 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+
+builder.Services.AddDbContext<EmprestimoCaixaDbContext>(options =>
+    options.UseSqlite("Data Source=EmprestimoCaixa.db"));
+
+
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
-builder.Services.AddTransient<IServiceProduto, ServiceProduto>();
+builder.Services.AddTransient<IProdutoService, ProdutoService>();
+builder.Services.AddTransient<IJurosService, JurosPriceService>();
+builder.Services.AddTransient<IJurosFactory, JurosFactory>();
+builder.Services.AddScoped<ValidarEmprestimoFilter>();
 
 var app = builder.Build();
 

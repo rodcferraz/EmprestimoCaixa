@@ -4,10 +4,10 @@ namespace EmprestimoCaixa.Infraestrutura.Interfaces
 {
     public interface IProdutoRepository
     {
-        Task<Produto> GetProdutosAsync();
-        Task<Produto> GetProdutoPorIdAsync(int idProduto);
-        Task CadastrarProduto(Produto produto);
-        Task<Produto> AlterarProduto(int idProduto, Produto produto);
-        Task DeletarProduto(int idProduto);
+        List<Produto>? GetProdutos();
+        Produto? GetProdutoPorId(int idProduto);
+        bool CadastrarProduto(Produto produto);
+        Produto? AlterarProduto(Produto produto);
+        bool DeletarProduto(Produto produto);
     }
 }

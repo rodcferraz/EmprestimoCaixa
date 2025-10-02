@@ -1,34 +1,66 @@
 using EmprestimoCaixa.Data;
 using EmprestimoCaixa.Entities;
+using EmprestimoCaixa.Infraestrutura.Data;
 using EmprestimoCaixa.Infraestrutura.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmprestimoCaixa.Infraestrutura
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        public Task<Produto> AlterarProduto(int idProduto, Produto produto)
+        private readonly EmprestimoCaixaDbContext _emprestimoCaixaDbContext;
+        
+        public ProdutoRepository(EmprestimoCaixaDbContext emprestimoCaixaDbContext)
         {
-            throw new NotImplementedException();
+            _emprestimoCaixaDbContext = emprestimoCaixaDbContext;
         }
 
-        public Task CadastrarProduto(Produto produto)
+        public Produto? AlterarProduto(Produto produto)
         {
-            throw new NotImplementedException();
+            _emprestimoCaixaDbContext.Produtos.Update(produto);
+            var resultado = _emprestimoCaixaDbContext.SaveChanges();
+
+            if (resultado == 0)
+            {
+                return null;
+            }
+            
+            return produto;
         }
 
-        public Task DeletarProduto(int idProduto)
+        public bool CadastrarProduto(Produto produto)
         {
-            throw new NotImplementedException();
+            _emprestimoCaixaDbContext.Produtos.Add(produto);
+            var resultado = _emprestimoCaixaDbContext.SaveChanges();
+
+            if (resultado == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        public Task<Produto> GetProdutoPorIdAsync(int idProduto)
+        public bool DeletarProduto(Produto produto)
         {
-            throw new NotImplementedException();
+            var removido = _emprestimoCaixaDbContext.Produtos.Remove(produto);
+
+            if (removido == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        public Task<Produto> GetProdutosAsync()
+        public Produto? GetProdutoPorId(int idProduto)
         {
-            throw new NotImplementedException();
+            return _emprestimoCaixaDbContext.Produtos.Find(idProduto);
+        }
+
+        public List<Produto>? GetProdutos()
+        {
+            return _emprestimoCaixaDbContext.Produtos.ToList();
         }
     }
 }
