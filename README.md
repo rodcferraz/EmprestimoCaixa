@@ -37,3 +37,31 @@ builder.Services.AddSwaggerGen(c =>
         Description = "Documentação da API com Swagger"
     });
 });
+
+## Adicionar projeto de teste
+
+# Criar diretório do projeto
+mkdir MeuProjetoTeste
+cd MeuProjetoTeste
+
+# Criar solution
+dotnet new sln
+
+# Criar projeto de aplicação
+dotnet new console -n MeuProjeto
+
+# Criar projeto de teste (xUnit - recomendado)
+dotnet new xunit -n MeuProjeto.Tests
+
+# Ou criar projeto de teste com MSTest
+dotnet new mstest -n MeuProjeto.Tests
+
+# Adicionar projetos à solution
+dotnet sln add MeuProjeto/MeuProjeto.csproj
+dotnet sln add MeuProjeto.Tests/MeuProjeto.Tests.csproj
+
+# Navegar para o projeto de teste
+cd MeuProjeto.Tests
+
+# Adicionar referência ao projeto principal
+dotnet add reference ../MeuProjeto/MeuProjeto.csproj
