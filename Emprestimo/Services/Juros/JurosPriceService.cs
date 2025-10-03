@@ -7,7 +7,12 @@ namespace EmprestimoCaixa.Services.Juros
     {
         public decimal ConverterTaxaAnualParaMensal(decimal taxaAnual)
         {
-            return (decimal)Math.Pow((double)(1 + taxaAnual), 1.0 / 12) - 1;
+            double taxaAnualDecimal = (double)taxaAnual / 100;
+
+            // Calcula taxa mensal equivalente: (1 + i_anual)^(1/12) - 1
+            double taxaMensal = Math.Pow(1 + taxaAnualDecimal, 1.0 / 12.0) - 1;
+            return (decimal)taxaMensal;
+            //return (decimal)Math.Pow((double)(1 + taxaAnual), 1.0 / 12) - 1;
         }
 
         public decimal CalcularParcelaFixaMensal(PedidoEmprestimoDTO pedidoEmprestimoDTO, decimal taxaAnual)

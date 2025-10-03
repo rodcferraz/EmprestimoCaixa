@@ -27,13 +27,18 @@ namespace EmprestimoCaixa.Controllers
         [HttpGet("{idProduto}")]
         public ActionResult<Produto> Get(int idProduto)
         {
+            if (!ModelState.IsValid || idProduto == 0)
+            {
+                return BadRequest("Parametros não informados");
+            }
+
             var produto = _productService.GetProdutoPorId(idProduto);
 
             return Ok(produto);
         }
 
         [HttpPut("{idProduto}")]
-        public ActionResult<Produto> AlterarProduto(int idProduto, ProdutoDTO produtoDto)
+        public ActionResult<Produto> AlterarProduto([FromQuery] int idProduto, [FromBody] ProdutoDTO produtoDto)
         {
             if (!ModelState.IsValid || idProduto == 0)
             {
@@ -59,7 +64,7 @@ namespace EmprestimoCaixa.Controllers
 
             var sucesso = _productService.CadastrarProduto(produto);
 
-            if (sucesso)
+            if (!sucesso)
             {
                 return BadRequest("Erro ao adicionar produto");
             }

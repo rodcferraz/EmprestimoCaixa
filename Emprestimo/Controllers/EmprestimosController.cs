@@ -8,15 +8,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace EmprestimoCaixa.Controllers
 {
     [ApiController]
-    public class EmprestimoController : Controller
+    [Route("[controller]")]
+    public class EmprestimosController : Controller
     {
         private readonly IEmprestimoService _emprestimoService;
-        public EmprestimoController(IEmprestimoService emprestimoService)
+        public EmprestimosController(IEmprestimoService emprestimoService)
         {
             _emprestimoService = emprestimoService;
         }
 
-        [HttpPost("pedidoEmprestimo")]
+        [HttpGet("pedidoEmprestimo")]
         [ServiceFilter(typeof(ValidarEmprestimoFilter))]
         public ActionResult<SimulacaoEmprestimoDTO> CalcularEmprestimo(PedidoEmprestimoDTO pedidoEmprestimoDTO)
         {

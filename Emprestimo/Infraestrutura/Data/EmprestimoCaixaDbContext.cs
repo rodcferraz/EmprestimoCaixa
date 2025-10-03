@@ -9,8 +9,8 @@ namespace EmprestimoCaixa.Infraestrutura.Data
             : base(options)
         {
         }
-        
-        public DbSet<Produto> Produtos { get; set; }
+
+        public DbSet<Produto> Produtos => Set<Produto>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

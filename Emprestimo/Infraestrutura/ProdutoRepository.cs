@@ -3,6 +3,7 @@ using EmprestimoCaixa.Entities;
 using EmprestimoCaixa.Infraestrutura.Data;
 using EmprestimoCaixa.Infraestrutura.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace EmprestimoCaixa.Infraestrutura
 {
@@ -60,6 +61,7 @@ namespace EmprestimoCaixa.Infraestrutura
 
         public List<Produto>? GetProdutos()
         {
+            Console.WriteLine("");
             return _emprestimoCaixaDbContext.Produtos.ToList();
         }
     }

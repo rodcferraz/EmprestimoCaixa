@@ -31,9 +31,6 @@ mono_crash.*
 packages/
 *.nuspec
 
-## Entity Framework
-Migrations/
-
 ## Dotnet CLI
 project.lock.json
 project.fragment.lock.json

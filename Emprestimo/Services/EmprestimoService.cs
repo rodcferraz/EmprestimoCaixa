@@ -1,3 +1,4 @@
+using Emprestimo.Mappers;
 using EmprestimoCaixa.Data;
 using EmprestimoCaixa.Domain;
 using EmprestimoCaixa.Domain.Interfaces;
@@ -5,29 +6,32 @@ using EmprestimoCaixa.Dtos;
 using EmprestimoCaixa.Dtos.Builder;
 using EmprestimoCaixa.Entities;
 using EmprestimoCaixa.Enums;
-using EmprestimoCaixa.Infraestrutura.Interfaces;
 using EmprestimoCaixa.Services.Interfaces;
 using EmprestimoCaixa.Services.Interfaces.Juros;
 
 namespace EmprestimoCaixa.Services
 {
-    public class ServiceEmprestimo : IEmprestimoService
+    public class EmprestimoService : IEmprestimoService
     {
-        private ModeloEmprestimoEnum MODELO_EMPRESTIMO = ModeloEmprestimoEnum.Price;
         private readonly IJurosFactory _jurosFactory;
+        private readonly AppSettings _appSettings;
 
-        public ServiceEmprestimo(IJurosFactory jurosFactory)
+        public EmprestimoService(IJurosFactory jurosFactory, AppSettings appSettings)
         {
             _jurosFactory = jurosFactory;
+            _appSettings = appSettings;
         }
 
         public SimulacaoEmprestimoDTO SimularEmprestimo(Produto produto, PedidoEmprestimoDTO pedidoEmprestimoDTO)
         {
             try
             {
+                var modeloEmprestimo = ModeloEmprestimoMapper.
+                                            FromStringToModeloEmprestimoEnum(_appSettings.MetodoEmprestimo);
+
                 IJurosService jurosService = _jurosFactory.RetornarJuros();
 
-                IParcelasEmprestimo emprestimo = MODELO_EMPRESTIMO switch
+                IParcelasEmprestimo emprestimo = modeloEmprestimo switch
                 {
                     ModeloEmprestimoEnum.Price => new ParcelasPrice(),
                     _ => throw new Exception("")
@@ -53,7 +57,7 @@ namespace EmprestimoCaixa.Services
             }
             catch (Exception exceptionError)
             {
-                throw new Exception("", exceptionError);
+                throw new Exception(exceptionError.Message, exceptionError);
             }
         }
     }
