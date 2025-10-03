@@ -38,7 +38,7 @@ namespace EmprestimoCaixa.Controllers
         }
 
         [HttpPut("{idProduto}")]
-        public ActionResult<Produto> AlterarProduto([FromQuery] int idProduto, [FromBody] ProdutoDTO produtoDto)
+        public ActionResult<Produto> AlterarProduto(int idProduto, [FromBody] ProdutoDTO produtoDto)
         {
             if (!ModelState.IsValid || idProduto == 0)
             {

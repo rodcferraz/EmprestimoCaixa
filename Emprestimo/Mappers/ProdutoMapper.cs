@@ -9,7 +9,6 @@ namespace EmprestimoCaixa.Mappers
         {
             return new Produto
             {
-                IdProduto = produtoDto.IdProduto,
                 Nome = produtoDto.Nome,
                 TaxaJurosAnual = produtoDto.TaxaJurosAnual,
                 PrazoMaximoMeses = produtoDto.PrazoMaximoMeses,
